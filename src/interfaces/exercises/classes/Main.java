@@ -13,5 +13,13 @@ public class Main
         truck.start();
         truck.honk();
         truck.stop();
+
+        Order order = new Order();
+        order.addItem( "Milk",      4.99 );
+        order.addItem( "Chocolate", 1.99 );
+        order.addItem( "Potato",    1.99 );
+        order.addItem( "Beer",      2.99 );
+
+        order.calculateTotal();
     }
 }
