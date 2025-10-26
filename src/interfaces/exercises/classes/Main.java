@@ -21,5 +21,10 @@ public class Main
         order.addItem( "Beer",      2.99 );
 
         order.calculateTotal();
+
+        ProductImplementation blackShirt = new ProductImplementation( "Black Shirt", 50 );
+        blackShirt.addQuantity( 40 );
+        blackShirt.printStockMessage();
+        blackShirt.removeQuantity( 100 );
     }
 }
