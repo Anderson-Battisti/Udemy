@@ -10,8 +10,6 @@ public class ProductController
 {
     private Map<Integer, ProductImplementation> codeToProductMap = new HashMap<>();
     
-    // public ProductController() {}
-    
     public void insertProduct( Integer code, ProductImplementation product )
     {
         boolean isProeductInserted = codeToProductMap.putIfAbsent( code, product ) == null;

@@ -23,7 +23,7 @@ public class ProductImplementation
     }
 
     @Override
-    public void removeQuantity(int quantity)
+    public void removeQuantity( int quantity )
     {
         if ( this.quantity >= quantity )
         {
