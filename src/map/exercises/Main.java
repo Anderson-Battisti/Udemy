@@ -12,7 +12,7 @@ public class Main
     {
         final Scanner scanner = new Scanner( System.in );
         
-        ProductController     productController = new ProductController();
+        ProductController productController = new ProductController();
         
         productController.insertProduct( 1, new ProductImplementation( "Mechanical Keyboard - Redragon", 50 ) );
         productController.insertProduct( 2, new ProductImplementation( "Radeon RX 7600 - AMD",           20 ) );
@@ -48,7 +48,7 @@ public class Main
                 
                 System.out.println( "Updated Products: " );
                 
-                printCodeToProductMap(  codeToProductMap );
+                printCodeToProductMap( codeToProductMap );
             }
             
             else
