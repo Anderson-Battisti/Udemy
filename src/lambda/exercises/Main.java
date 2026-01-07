@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class Main
 {
-    /* The remotion of 'public' is a Java 25 feature! */
+    /* The remotion of 'public' and 'String[] args' parameter is a Java 25 feature! */
     static void main()
     {
         
