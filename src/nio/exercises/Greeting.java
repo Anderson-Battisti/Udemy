@@ -1,4 +1,4 @@
-package io.classes;
+package nio.exercises;
 
 public class Greeting
 {
