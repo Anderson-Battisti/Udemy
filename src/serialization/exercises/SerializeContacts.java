@@ -19,7 +19,6 @@ public class SerializeContacts
         }
     }
     
-    @SuppressWarnings( "unchecked" )
     public static void deserializeContacts() throws IOException, ClassNotFoundException
     {
         try ( ObjectInputStream inputStream = new ObjectInputStream( new FileInputStream( "resources\\agenda.ser" ) ) )
