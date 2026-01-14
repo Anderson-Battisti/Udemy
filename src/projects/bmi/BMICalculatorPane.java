@@ -47,7 +47,7 @@ public class BMICalculatorPane
     private HBox getWeightRow()
     {
         HBox weightRow = new HBox( 10 );
-        weightRow.setPadding(  new Insets( 10 ) );
+        weightRow.setPadding( new Insets( 10 ) );
         weightRow.setAlignment( Pos.CENTER );
         weightRow.setAlignment( Pos.CENTER_LEFT );
         
@@ -67,7 +67,7 @@ public class BMICalculatorPane
     private HBox getHeightRow()
     {
         HBox heightRow = new HBox( 10 );
-        heightRow.setPadding(   new Insets( 10 ) );
+        heightRow.setPadding( new Insets( 10 ) );
         heightRow.setAlignment( Pos.CENTER );
         heightRow.setAlignment( Pos.CENTER_LEFT );
         
