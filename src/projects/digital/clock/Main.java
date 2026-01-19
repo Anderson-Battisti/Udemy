@@ -22,7 +22,6 @@ public class Main
         Scene scene = new Scene( new ClockPane(), 250, 200 );
         
         stage.getIcons().add( new Image( Objects.requireNonNull( getClass().getResourceAsStream( "/icons/digital-clock.png" ) ) ) );
-        stage.setScene( scene );
         stage.setTitle( "Digital Clock" );
         stage.setScene( scene );
         stage.show();
