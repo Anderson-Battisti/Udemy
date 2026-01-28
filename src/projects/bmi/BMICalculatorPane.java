@@ -49,8 +49,6 @@ public class BMICalculatorPane
         getChildren().add( container );
     }
     
-    
-    
     private Node getHeader()
     {
         Label titleLabel = new Label( "BMI Calculator" );
