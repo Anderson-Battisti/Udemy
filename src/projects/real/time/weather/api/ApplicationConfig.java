@@ -12,9 +12,9 @@ public class ApplicationConfig
     /* static runs when this class is loaded on JVM, running th code in its body */
     static 
     {
-        try ( InputStream inputStream = ApplicationConfig.class.getClassLoader().getResourceAsStream( "application.properties" ) ) 
+        try ( InputStream inputStream = ApplicationConfig.class.getClassLoader().getResourceAsStream( "application.properties" ) )
         {
-            if ( inputStream == null ) 
+            if ( inputStream == null )
             {
                 throw new RuntimeException( "application.properties not found" );
             }
