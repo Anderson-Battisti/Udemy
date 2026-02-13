@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main
     extends
@@ -20,8 +19,8 @@ public class Main
     {
         Scene scene = new Scene( new WeatherApplicationPane() );
         
-        stage.setMaxHeight(  Double.MAX_VALUE );
-        stage.setMaxWidth(  Double.MAX_VALUE );
+        stage.setMaxHeight( Double.MAX_VALUE );
+        stage.setMaxWidth( Double.MAX_VALUE );
         stage.setTitle( "Weather Application" );
         stage.getIcons().add( new Image( getClass().getResourceAsStream( "/weather.application/application_icon.png" ) ) );
         stage.setMaximized( true );
