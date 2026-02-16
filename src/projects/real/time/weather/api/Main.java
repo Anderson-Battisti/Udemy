@@ -3,6 +3,7 @@ package projects.real.time.weather.api;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main
@@ -17,6 +18,8 @@ public class Main
     @Override
     public void start( Stage stage ) throws Exception
     {
+        Font.loadFont( getClass().getResource( "/fonts/SNPro-SemiBold.ttf" ).toExternalForm(), 10 );
+        
         Scene scene = new Scene( new WeatherApplicationPane() );
         
         stage.setMaxHeight( Double.MAX_VALUE );
