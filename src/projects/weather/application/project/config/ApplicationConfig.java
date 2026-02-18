@@ -1,4 +1,4 @@
-package projects.real.time.weather.api;
+package projects.weather.application.project.config;
 
 import java.io.InputStream;
 import java.util.Properties;
