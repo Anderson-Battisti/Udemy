@@ -22,6 +22,8 @@ public class WeatherApplicationService
         
         String JSONResponse = getAPIResponse( cityName );
         
+        System.out.println( JSONResponse ); /* TODO: DELETE THIS LINE WHEN THE DEVELOPMENT END */
+        
         if ( JSONResponse == null )
         {
             return null;

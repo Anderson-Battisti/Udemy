@@ -15,8 +15,29 @@ public class EmptyStatePane
     extends
         VBox
 {
+    private EmptyStatePaneState emptyStatePaneState = EmptyStatePaneState.INITIAL;
+    
     public EmptyStatePane()
     {
+        initComponents();
+    }
+    
+    public enum EmptyStatePaneState
+    {
+        INITIAL, CITY_NOT_FOUND
+    }
+    
+    public void setEmptyStatePaneState( EmptyStatePaneState emptyStatePaneState )
+    {
+        this.emptyStatePaneState = emptyStatePaneState;
+        
+        refreshContent();
+    }
+    
+    private void refreshContent()
+    {
+        this.getChildren().clear();
+        
         initComponents();
     }
     
@@ -77,13 +98,15 @@ public class EmptyStatePane
         
         Label cardTitle = new Label();
         cardTitle.setAlignment( Pos.CENTER );
-        cardTitle.setText( "Search for a city to see the weather" );
+        cardTitle.setText( emptyStatePaneState == EmptyStatePaneState.INITIAL ? "Search for a city to see the weather" : 
+                                                                                "No results found for that city." );
         cardTitle.setFont( Font.font( "SN Pro SemiBold", 40 ) );
         cardTitle.setStyle( "-fx-text-fill: white;" );
         
         Label cardDescription = new Label();
         cardDescription.setTextAlignment( TextAlignment.CENTER );
-        cardDescription.setText( "Enter a city name in the search bar to view current weather \nconditions, including temperature and detailed information." );
+        cardDescription.setText( emptyStatePaneState == EmptyStatePaneState.INITIAL ? "Enter a city name in the search bar to view current weather \nconditions, including temperature and detailed information." :
+                                                                                      "We couldn’t find that city. Please check the spelling and try again." );
         cardDescription.setFont( Font.font( "SN Pro SemiBold", 20 ) );
         cardDescription.setStyle( "-fx-text-fill: white;" );
         

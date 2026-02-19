@@ -135,11 +135,20 @@ public class WeatherApplicationRootPane
         {
             WeatherData fetchedWeatherData = weatherApplicationService.getWeatherData( cityName );
             
-            // TODO
+            System.out.println( fetchedWeatherData );
+            
+            if ( fetchedWeatherData != null )
+            {
+                content.setCenter( new WeatherResultsPane( fetchedWeatherData ) );
+            }
         }
         
         catch ( Exception exception )
         {
+            emptyStatePane.setEmptyStatePaneState( EmptyStatePane.EmptyStatePaneState.CITY_NOT_FOUND );
+            
+            content.setCenter( emptyStatePane );
+            
             System.out.println( "An error has occurred. Please try again. Error: " + exception.getMessage() );
         }
     }
