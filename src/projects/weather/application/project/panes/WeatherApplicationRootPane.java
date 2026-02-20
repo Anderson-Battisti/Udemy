@@ -2,6 +2,7 @@ package projects.weather.application.project.panes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -95,6 +96,8 @@ public class WeatherApplicationRootPane
     
     private Node getSearchFieldComponent( StackPane headerRoot )
     {
+        TextField searchField = new TextField();
+        
         StackPane searchFieldContainer = new StackPane();
         searchFieldContainer.setMaxWidth( Double.MAX_VALUE );
         searchFieldContainer.maxWidthProperty().bind( headerRoot.widthProperty().multiply( 0.4 ) );
@@ -104,8 +107,11 @@ public class WeatherApplicationRootPane
         icon.setFitWidth( 25 );
         icon.setFitHeight( 25 );
         icon.setPreserveRatio( true );
+        icon.setPickOnBounds( true );
+        icon.setCursor( Cursor.HAND );
+        icon.setOnMouseClicked( event -> handleSearch( searchField.getText().trim() ) );
         
-        TextField searchField = new TextField();
+        
         searchField.setPromptText( "Search city..." );
         searchField.maxWidthProperty().bind( headerRoot.widthProperty().multiply( 0.4 ) );
         searchField.setOnAction( event -> handleSearch( searchField.getText().trim() ) );
