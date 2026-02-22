@@ -1,8 +1,10 @@
 package projects.weather.application.project.panes;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import projects.weather.application.project.model.WeatherData;
 
 public class WeatherResultsPane
@@ -35,6 +37,16 @@ public class WeatherResultsPane
         leftContainer.setStyle( "-fx-border-color: green;" );
         leftContainer.prefWidthProperty().bind( this.widthProperty().multiply( 0.4 ) );
         leftContainer.prefHeightProperty().bind( this.heightProperty().multiply( 0.8 ) );
+        leftContainer.setFillWidth( true );
+        
+        Label locationLabel = new Label( weatherData.getCity() + ", " + weatherData.getCountry() );
+        locationLabel.setStyle( "-fx-border-color: red; -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" );
+        locationLabel.setFont( Font.font( "SN Pro SemiBold", 40 ) );
+        locationLabel.setMaxWidth( Double.MAX_VALUE );
+        locationLabel.setAlignment(  Pos.CENTER );
+        
+        leftContainer.getChildren().add( locationLabel );
+        
         
         return leftContainer;
     }

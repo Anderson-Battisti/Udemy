@@ -85,7 +85,7 @@ public class WeatherApplicationRootPane
         StackPane.setAlignment( appTitleContainer, Pos.CENTER_LEFT );
         
         Label appTitle = new Label( "Weather Application" );
-        appTitle.setStyle( " -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" );
+        appTitle.setStyle( "-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;" );
      
         appTitleContainer.getChildren().add( appTitle );
         

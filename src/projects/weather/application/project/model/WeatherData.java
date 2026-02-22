@@ -14,56 +14,66 @@ public class WeatherData
     
     public WeatherData( String city,
                         String country,
-                        String date, 
-                        String temperature, 
-                        String termicSensation, 
-                        String weatherCondition, 
-                        String umidity, 
-                        String windSpeed, 
+                        String date,
+                        String temperature,
+                        String termicSensation,
+                        String weatherCondition,
+                        String umidity,
+                        String windSpeed,
                         String atmosphericPressure )
     {
-        this.city                = city;
-        this.country             = country;
-        this.date                = date;
-        this.temperature         = temperature;
-        this.termicSensation     = termicSensation;
-        this.weatherCondition    = weatherCondition;
-        this.umidity             = umidity;
-        this.windSpeed           = windSpeed;
+        this.city = city;
+        this.country = country;
+        this.date = date;
+        this.temperature = temperature;
+        this.termicSensation = termicSensation;
+        this.weatherCondition = weatherCondition;
+        this.umidity = umidity;
+        this.windSpeed = windSpeed;
         this.atmosphericPressure = atmosphericPressure;
     }
     
     /* Getters */
+    public String getCity()
+    {
+        return city;
+    }
+    
+    public String getCountry()
+    {
+        return country;
+    }
+    
     public String getDate()
     {
         return date;
     }
-
+    
     public String getTemperature()
     {
         return temperature;
     }
-
+    
     public String getTermicSensation()
     {
         return termicSensation;
     }
-
+    
     public String getWeatherCondition()
     {
         return weatherCondition;
     }
-
+    
     public String getUmidity()
     {
         return umidity;
     }
-
+    
     public String getWindSpeed()
     {
         return windSpeed;
     }
-
+    
     public String getAtmosphericPressure()
     {
         return atmosphericPressure;
