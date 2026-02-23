@@ -35,7 +35,7 @@ public class WeatherData
     
     /* Getters */
     public String getCity()
-    {
+    {   
         return city;
     }
     
