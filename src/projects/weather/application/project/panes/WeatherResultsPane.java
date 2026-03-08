@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import projects.weather.application.project.model.WeatherData;
@@ -28,7 +32,7 @@ public class WeatherResultsPane
     private void initComponents()
     {
         this.setAlignment( Pos.CENTER );
-        this.setSpacing( 10 );
+        this.setSpacing( 20 );
         this.setFillHeight( false );
         this.setStyle( "-fx-border-color: blue;" );
         
@@ -49,7 +53,6 @@ public class WeatherResultsPane
         locationAndDateContainer.setAlignment( Pos.CENTER );
         locationAndDateContainer.setStyle( "-fx-border-color: green;" );
         
-        
         Label locationLabel = new Label( weatherData.getCity() + ", " + weatherData.getCountry() );
         locationLabel.setStyle( "-fx-border-color: red; -fx-text-fill: white;" );
         locationLabel.setFont( Font.font( "SN Pro SemiBold", 40 ) );
@@ -62,23 +65,6 @@ public class WeatherResultsPane
                                    + now.getMonth().getDisplayName( TextStyle.SHORT, Locale.ENGLISH ) + " " + now.getDayOfMonth() + ", " + now.getYear() + " - "
                                    + weatherData.getDate().split( " " )[ 1 ] );
         
-        HBox temperatureContainer = new HBox( 10 );
-        temperatureContainer.setAlignment( Pos.CENTER_LEFT );
-        temperatureContainer.setMaxWidth( Double.MAX_VALUE );
-        temperatureContainer.setMinHeight( 100 );
-        temperatureContainer.setStyle( "-fx-border-color: blue;" );
-        
-        Label temperatureLabel = new Label( weatherData.getTemperature().split( "\\." )[0] + "°C" );
-        temperatureLabel.setStyle( "-fx-border-color: green; -fx-text-fill: white;" );
-        temperatureLabel.setFont( Font.font( "SN Pro SemiBold", 40 ) );
-        HBox.setHgrow( temperatureLabel, Priority.ALWAYS );
-        
-        VBox iconContainer = new VBox();
-        iconContainer.setStyle( "-fx-border-color: blue;" );
-        iconContainer.setAlignment( Pos.CENTER_RIGHT );
-        
-        temperatureContainer.getChildren().addAll( temperatureLabel, iconContainer );
-        
         dateLabel.setStyle( "-fx-border-color: yellow; -fx-text-fill: white;" );
         dateLabel.setFont( Font.font( "SN Pro Regular", 20 ) );
         dateLabel.setMaxWidth( Double.MAX_VALUE );
@@ -86,10 +72,80 @@ public class WeatherResultsPane
         
         locationAndDateContainer.getChildren().addAll( locationLabel, dateLabel );
         
-        leftContainer.getChildren().addAll( locationAndDateContainer, temperatureContainer );
+        //TEMPERATURE CONTAINER
+        HBox temperatureContainer = new HBox( 10 );
+        temperatureContainer.setAlignment( Pos.CENTER_LEFT );
+        temperatureContainer.setMaxWidth( Double.MAX_VALUE );
+        temperatureContainer.setMinHeight( 200 );
+        temperatureContainer.setStyle( "-fx-border-color: blue;" );
         
+        Label temperatureLabel = new Label( weatherData.getTemperature().split( "\\." )[0] + "°C" );
+        temperatureLabel.setStyle( "-fx-border-color: green; -fx-text-fill: white;" );
+        temperatureLabel.setFont( Font.font( "SN Pro SemiBold", 60 ) );
+        HBox.setHgrow( temperatureLabel, Priority.ALWAYS );
+        
+        VBox iconContainer = new VBox();
+        iconContainer.setStyle( "-fx-border-color: blue;" );
+        iconContainer.setAlignment( Pos.CENTER );
+        iconContainer.setPadding( new Insets( 0, 0, 0, 20 ) );
+        
+        Image resultIcon = new Image(  getClass().getResource( "/icons/partly-cloudy.png" ).toExternalForm() );
+        ImageView resultIconView = new ImageView( resultIcon );
+        resultIconView.setFitWidth ( 100 );
+        resultIconView.setFitHeight( 100 );
+        
+        Label weatherStatusLabel = new Label( "Partly Cloudy" );
+        weatherStatusLabel.setStyle( "-fx-text-fill: white;" );
+        weatherStatusLabel.setFont( Font.font( "SN Pro SemiBold", 20 ) );
+        
+        iconContainer.getChildren().addAll( resultIconView, weatherStatusLabel );
+        
+        temperatureContainer.getChildren().addAll( temperatureLabel, iconContainer );
+        
+        // LEFT CONTAINER
+        leftContainer.getChildren().addAll( locationAndDateContainer, temperatureContainer, getInfoLineComponent() );
         
         return leftContainer;
+    }
+    
+    private VBox getInfoLineComponent()
+    {
+        VBox componentContainer = new VBox();
+        componentContainer.setSpacing( 20 );
+
+        componentContainer.getChildren().addAll( getInfoLineComponent( "Feels Like", "Test" ),
+                                                 getInfoLineComponent( "Humidity", "test humidity" ) );
+        
+        return  componentContainer;
+    }
+    
+    private VBox getInfoLineComponent( String firstLabel, String resultLabel )
+    {
+        VBox infoLineContainer = new VBox();
+        
+        HBox infoContainer = new HBox( 10 );
+        
+        Label feelsLikeLabel = new Label( firstLabel );
+        feelsLikeLabel.setStyle( "-fx-text-fill: white;" );
+        feelsLikeLabel.setFont( Font.font( "SN Pro SemiBold", 18 ) );
+        
+        Region spacer = new Region();
+        HBox.setHgrow( spacer, Priority.ALWAYS );
+        
+        Label feelsLikeTemerature = new Label( resultLabel );
+        feelsLikeTemerature.setStyle( "-fx-text-fill: white;" );
+        feelsLikeTemerature.setFont( Font.font( "SN Pro SemiBold", 18 ) );
+        
+        infoContainer.getChildren().addAll( feelsLikeLabel, spacer, feelsLikeTemerature );
+        
+        Region line = new Region();
+        line.setPrefHeight( 1 );
+        line.setMaxWidth( Double.MAX_VALUE );
+        line.setStyle( "-fx-background-color: white;" );
+        
+        infoLineContainer.getChildren().addAll( infoContainer, line );
+        
+        return infoLineContainer;
     }
     
     private VBox getRightContainer()
