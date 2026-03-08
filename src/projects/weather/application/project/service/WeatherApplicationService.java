@@ -58,16 +58,19 @@ public class WeatherApplicationService
         JSONObject current   = jsonObject.getJSONObject( "current"   );
         JSONObject condition = current   .getJSONObject( "condition" );
         
-        String city                = location.getString( "name"      );
-        String country             = location.getString( "country"   );
-        String date                = location.getString( "localtime" );
-        String temperature         = String.valueOf( current.getFloat( "temp_c" ) );
-        String termicSensation     = String.valueOf( current.getFloat( "feelslike_c" ) );
-        String weatherCondition    = condition.getString( "text" );
-        String humidity            = String.valueOf( current.getInt( "humidity" ) );
-        String windSpeed           = String.valueOf( current.getFloat( "wind_kph" ) );
-        String atmosphericPressure = String.valueOf( current.getFloat( "pressure_mb" ) );
+        String city                   = location.getString( "name"      );
+        String region                 = location.getString( "region"    ); 
+        String country                = location.getString( "country"   );
+        String date                   = location.getString( "localtime" );
+        String temperature            = String.valueOf( current.getFloat( "temp_c" ) );
+        String termicSensation        = String.valueOf( current.getFloat( "feelslike_c" ) );
+        String weatherCondition       = condition.getString( "text" );
+        String humidity               = String.valueOf( current.getInt  ( "humidity"    ) );
+        String windSpeed              = String.valueOf( current.getFloat( "wind_kph"    ) );
+        String atmosphericPressure    = String.valueOf( current.getFloat( "pressure_mb" ) );
+        String kilometersOfVisibility = String.valueOf( current.getFloat( "vis_km"      ) );
+        int    weatherConditionCode   = condition.getInt( "code" );
         
-        return new WeatherData( city, country, date, temperature, termicSensation, weatherCondition, humidity, windSpeed, atmosphericPressure );
+        return new WeatherData( city, region, country, date, temperature, termicSensation, weatherCondition, humidity, windSpeed, atmosphericPressure, kilometersOfVisibility, weatherConditionCode );
     }
 }

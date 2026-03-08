@@ -3,6 +3,7 @@ package projects.weather.application.project.model;
 public class WeatherData
 {
     private String city;
+    private String region;
     private String country;
     private String date;
     private String temperature;
@@ -11,8 +12,11 @@ public class WeatherData
     private String umidity;
     private String windSpeed;
     private String atmosphericPressure;
+    private String kilometersOfVisibility;
+    private int    weatherConditionCode;
     
     public WeatherData( String city,
+                        String region,
                         String country,
                         String date,
                         String temperature,
@@ -20,9 +24,12 @@ public class WeatherData
                         String weatherCondition,
                         String umidity,
                         String windSpeed,
-                        String atmosphericPressure )
+                        String atmosphericPressure,
+                        String kilometersOfVisibility,
+                        int    weatherConditionCode )
     {
         this.city = city;
+        this.region = region;
         this.country = country;
         this.date = date;
         this.temperature = temperature;
@@ -31,12 +38,19 @@ public class WeatherData
         this.umidity = umidity;
         this.windSpeed = windSpeed;
         this.atmosphericPressure = atmosphericPressure;
+        this.kilometersOfVisibility = kilometersOfVisibility;
+        this.weatherConditionCode = weatherConditionCode;
     }
     
     /* Getters */
     public String getCity()
     {   
         return city;
+    }
+    
+    public String getRegion()
+    {
+        return region;
     }
     
     public String getCountry()
@@ -64,7 +78,7 @@ public class WeatherData
         return weatherCondition;
     }
     
-    public String getUmidity()
+    public String getHumidity()
     {
         return umidity;
     }
@@ -77,5 +91,15 @@ public class WeatherData
     public String getAtmosphericPressure()
     {
         return atmosphericPressure;
+    }
+    
+    public String getKilometersOfVisibility()
+    {
+        return kilometersOfVisibility;
+    }
+    
+    public int getWeatherConditionCode()
+    {
+        return weatherConditionCode;
     }
 }
