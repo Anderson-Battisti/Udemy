@@ -2,6 +2,7 @@ package projects.weather.application.project.panes;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 
 import javafx.geometry.Insets;
@@ -12,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import projects.weather.application.project.model.WeatherData;
@@ -42,8 +44,13 @@ public class WeatherResultsPane
     private VBox getLeftContainer()
     {
         VBox leftContainer = new VBox( 10 );
+        leftContainer.setStyle( """
+                                -fx-background-color: rgba( 255,255,255,0.2 );
+                                -fx-background-radius: 20;
+                                -fx-border-radius: 20;
+                                -fx-border-color: rgba( 255,255,255,0.1 );
+                                """ );
         
-        leftContainer.setStyle( "-fx-border-color: green;" );
         leftContainer.prefWidthProperty().bind( this.widthProperty().multiply( 0.4 ) );
         leftContainer.prefHeightProperty().bind( this.heightProperty().multiply( 0.8 ) );
         leftContainer.setFillWidth( true );
@@ -139,7 +146,7 @@ public class WeatherResultsPane
                                                  getInfoLineComponent( "Wind",       weatherData.getWindSpeed()              + " km/h" ),
                                                  getInfoLineComponent( "Visibility", weatherData.getKilometersOfVisibility() + " km"   ) );
         
-        return  componentContainer;
+        return componentContainer;
     }
     
     private VBox getInfoLineComponent( String firstLabel, String resultLabel )
@@ -178,27 +185,83 @@ public class WeatherResultsPane
         rightContainer.prefWidthProperty().bind( this.widthProperty().multiply( 0.4 ) );
         rightContainer.prefHeightProperty().bind( this.heightProperty().multiply( 0.8 ) );
         
+        rightContainer.getChildren().addAll( getTilePane() );
+        
         return rightContainer;
+    }
+    
+    private TilePane getTilePane()
+    {
+        TilePane tilePane = new TilePane();
+        tilePane.setHgap( 15 );
+        tilePane.setVgap( 15 );
+        tilePane.setPrefColumns( 2 );
+        tilePane.setTileAlignment( Pos.TOP_LEFT );
+        
+        List<HBox> cards = List.of( getSecondaryInfosCard( "Pressure", weatherData.getAtmosphericPressure() + " mb", "/icons/gauge.png" ),
+                                    getSecondaryInfosCard( "UV Index", weatherData.getUvIndex(), "/icons/uv-index.png" ),
+                                    getSecondaryInfosCard( "Precipitation", weatherData.getPrecipitationInMilimeters() + " mm", "/icons/precipitation.png" ),
+                                    getSecondaryInfosCard( "Cloud Cover", weatherData.getCloudCover() + " %", "/icons/percentage.png" ),
+                                    getSecondaryInfosCard( "Dew Point", weatherData.getDewPoint(), "/icons/dew.png" ),
+                                    getSecondaryInfosCard( "Wind Gust", weatherData.getWindGust(), "/icons/wind-gust.png" ),
+                                    getSecondaryInfosCard( "Wind Direction", weatherData.getWindDirection(), "/icons/windy.png" ),
+                                    getSecondaryInfosCard( null, weatherData.isDay() ? "Day" : "Night", "/icons/day-and-night.png" ) );
+        
+        tilePane.getChildren().addAll( cards );
+        
+        return tilePane;
     }
     
     private HBox getSecondaryInfosCard( String label, String resultLabel, String iconPath )
     {
         HBox secondaryInfosCard = new HBox( 10 );
+        secondaryInfosCard.setMinHeight( 100 );
+        secondaryInfosCard.setMinWidth( 300 );
+        secondaryInfosCard.setAlignment( Pos.CENTER_LEFT );
+        secondaryInfosCard.setPadding( new Insets( 0, 0, 0, 20 ) );
+        secondaryInfosCard.setStyle( """
+                                     -fx-background-color: rgba( 255,255,255,0.2 );
+                                     -fx-background-radius: 20;
+                                     -fx-border-radius: 20;
+                                     -fx-border-color: rgba( 255,255,255,0.1 );
+                                     """ );
         
         VBox iconDiv = new VBox();
+        iconDiv.setAlignment( Pos.CENTER );
+        iconDiv.maxHeightProperty().bind( secondaryInfosCard.heightProperty().multiply( 0.65 ) );
+        iconDiv.minWidthProperty().bind( secondaryInfosCard.widthProperty().multiply( 0.2 ) );
+        iconDiv.setStyle( """
+                          -fx-background-color: rgba( 255,255,255,0.2 );
+                          -fx-background-radius: 20;
+                          -fx-border-radius: 20;
+                          -fx-border-color: rgba( 255,255,255,0.1 );
+                          """ );
         
         Image icon = new Image( getClass().getResource( iconPath ).toExternalForm() );
         ImageView iconView = new ImageView( icon );
+        iconView.setFitWidth ( 30 );
+        iconView.setFitHeight( 30 );
         
         iconDiv.getChildren().add( iconView );
         
-        VBox infoDiv = new VBox( 10 );
+        VBox infoDiv = new VBox( 0 );
+        infoDiv.setAlignment( Pos.CENTER_LEFT );
+        infoDiv.setStyle( "-fx-border-color: purple;" );
         
         Label infoLabel = new Label( label );
+        infoLabel.setStyle( "-fx-text-fill: white;" );
+        infoLabel.setFont( Font.font( "SN Pro SemiBold", 20 ) );
         
         Label infoResult = new Label( resultLabel );
+        infoResult.setStyle( "-fx-text-fill: white;" );
+        infoResult.setFont( Font.font( "SN Pro SemiBold", 20 ) );
         
-        infoDiv.getChildren().addAll( infoLabel, infoResult );
+        if ( label != null ) 
+        {
+            infoDiv.getChildren().add( infoLabel );
+        }
+        
+        infoDiv.getChildren().addAll( infoResult );
         
         secondaryInfosCard.getChildren().addAll( iconDiv, infoDiv );
         

@@ -69,8 +69,16 @@ public class WeatherApplicationService
         String windSpeed              = String.valueOf( current.getFloat( "wind_kph"    ) );
         String atmosphericPressure    = String.valueOf( current.getFloat( "pressure_mb" ) );
         String kilometersOfVisibility = String.valueOf( current.getFloat( "vis_km"      ) );
-        int    weatherConditionCode   = condition.getInt( "code" );
+        String precipitation          = String.valueOf( current.getFloat( "precip_mm" ) );
+        String uvIndex                = String.valueOf( current.getFloat( "uv" ) );
+        String cloudCover             = String.valueOf( current.getFloat( "cloud" ) );
+        String dewPoint               = String.valueOf( current.getFloat( "dewpoint_c" ) );
+        String windGust               = String.valueOf( current.getFloat( "gust_kph" ) );
+        String windDirection          = String.valueOf( current.getString( "wind_dir" ) );
+        boolean isDay                 = current.getInt( "is_day" ) == 1;
+        int weatherConditionCode      = condition.getInt( "code" );
         
-        return new WeatherData( city, region, country, date, temperature, termicSensation, weatherCondition, humidity, windSpeed, atmosphericPressure, kilometersOfVisibility, weatherConditionCode );
+        return new WeatherData( city, region, country, date, temperature, termicSensation, weatherCondition, humidity, windSpeed, atmosphericPressure, 
+                                kilometersOfVisibility, precipitation, uvIndex, cloudCover, dewPoint, windGust, windDirection, isDay, weatherConditionCode );
     }
 }
