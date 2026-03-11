@@ -42,7 +42,7 @@ public class WeatherApplicationRootPane
     
     private void initBackground()
     {
-        Image image = new Image( getClass().getResource( "/weather.application/weather_background_image.jpg" ).toExternalForm() );
+        Image image = new Image( getClass().getResource( "/weather.application/weather_app_background.jpg" ).toExternalForm() );
         
         BackgroundImage backgroundImage = new BackgroundImage( image, 
                                                                BackgroundRepeat.NO_REPEAT, 
@@ -57,7 +57,7 @@ public class WeatherApplicationRootPane
     {
         Pane overlay = new Pane();
         
-        overlay.setStyle( "-fx-background-color: rgba( 0, 0, 0, 0.40 );" );
+        overlay.setStyle( "-fx-background-color: rgba( 0, 0, 0, 0.60 );" );
         
         getChildren().add( overlay );
     }
@@ -65,7 +65,6 @@ public class WeatherApplicationRootPane
     private void initContent()
     {
         content.setPadding( new Insets( 40 ) );
-        content.setStyle("-fx-border-color: yellow;");
         
         content.setTop( createHeader() );
         content.setCenter( emptyStatePane );
@@ -77,7 +76,6 @@ public class WeatherApplicationRootPane
     {
         StackPane headerRoot = new StackPane();
         headerRoot.setPadding( new Insets( 20 ) );
-        headerRoot.setStyle("-fx-border-color: red;");
         
         HBox appTitleContainer = new HBox();
         appTitleContainer.setAlignment( Pos.CENTER_LEFT );
@@ -101,7 +99,6 @@ public class WeatherApplicationRootPane
         StackPane searchFieldContainer = new StackPane();
         searchFieldContainer.setMaxWidth( Double.MAX_VALUE );
         searchFieldContainer.maxWidthProperty().bind( headerRoot.widthProperty().multiply( 0.4 ) );
-        searchFieldContainer.setStyle( "-fx-border-color: blue;" );
         
         ImageView icon = new ImageView( new Image( getClass().getResourceAsStream( "/weather.application/search_icon.png" ) ) );
         icon.setFitWidth( 25 );
@@ -121,7 +118,6 @@ public class WeatherApplicationRootPane
                               -fx-prompt-text-fill: rgba(255,255,255,0.6); 
                               -fx-background-radius: 8; 
                               -fx-padding: 10 10 10 40; 
-                              -fx-border-color: green; 
                               -fx-background-radius: 20; 
                               -fx-border-radius: 20;
                               """ );

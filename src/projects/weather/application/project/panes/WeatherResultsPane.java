@@ -36,7 +36,6 @@ public class WeatherResultsPane
         this.setAlignment( Pos.CENTER );
         this.setSpacing( 20 );
         this.setFillHeight( false );
-        this.setStyle( "-fx-border-color: blue;" );
         
         this.getChildren().addAll( getLeftContainer(), getRightContainer() );
     }
@@ -44,6 +43,7 @@ public class WeatherResultsPane
     private VBox getLeftContainer()
     {
         VBox leftContainer = new VBox( 10 );
+        leftContainer.setPadding(  new Insets( 15 ) );
         leftContainer.setStyle( """
                                 -fx-background-color: rgba( 255,255,255,0.2 );
                                 -fx-background-radius: 20;
@@ -58,10 +58,9 @@ public class WeatherResultsPane
         VBox locationAndDateContainer = new VBox( 10 );
         locationAndDateContainer.setMaxWidth( Double.MAX_VALUE );
         locationAndDateContainer.setAlignment( Pos.CENTER );
-        locationAndDateContainer.setStyle( "-fx-border-color: green;" );
         
         Label locationLabel = new Label( weatherData.getCity() + ", " + weatherData.getRegion() + ", " + weatherData.getCountry() );
-        locationLabel.setStyle( "-fx-border-color: red; -fx-text-fill: white;" );
+        locationLabel.setStyle( "-fx-text-fill: white;" );
         locationLabel.setFont( Font.font( "SN Pro SemiBold", 40 ) );
         locationLabel.setMaxWidth( Double.MAX_VALUE );
         locationLabel.setAlignment( Pos.TOP_LEFT );
@@ -73,7 +72,7 @@ public class WeatherResultsPane
                                    + now.getMonth().getDisplayName( TextStyle.SHORT, Locale.ENGLISH ) + " " + now.getDayOfMonth() + ", " + now.getYear() + " - "
                                    + weatherData.getDate().split( " " )[ 1 ] );
         
-        dateLabel.setStyle( "-fx-border-color: yellow; -fx-text-fill: white;" );
+        dateLabel.setStyle( "-fx-text-fill: white;" );
         dateLabel.setFont( Font.font( "SN Pro Regular", 20 ) );
         dateLabel.setMaxWidth( Double.MAX_VALUE );
         dateLabel.setAlignment( Pos.TOP_LEFT );
@@ -85,15 +84,13 @@ public class WeatherResultsPane
         temperatureContainer.setAlignment( Pos.CENTER_LEFT );
         temperatureContainer.setMaxWidth( Double.MAX_VALUE );
         temperatureContainer.setMinHeight( 200 );
-        temperatureContainer.setStyle( "-fx-border-color: blue;" );
         
         Label temperatureLabel = new Label( weatherData.getTemperature().split( "\\." )[0] + "°C" );
-        temperatureLabel.setStyle( "-fx-border-color: green; -fx-text-fill: white;" );
+        temperatureLabel.setStyle( "-fx-text-fill: white;" );
         temperatureLabel.setFont( Font.font( "SN Pro SemiBold", 60 ) );
         HBox.setHgrow( temperatureLabel, Priority.ALWAYS );
         
         VBox iconContainer = new VBox();
-        iconContainer.setStyle( "-fx-border-color: blue;" );
         iconContainer.setAlignment( Pos.CENTER );
         iconContainer.setPadding( new Insets( 0, 0, 0, 20 ) );
         
@@ -181,7 +178,6 @@ public class WeatherResultsPane
     private VBox getRightContainer()
     {
         VBox rightContainer = new VBox( 10 );
-        rightContainer.setStyle( "-fx-border-color: green;" );
         rightContainer.prefWidthProperty().bind( this.widthProperty().multiply( 0.4 ) );
         rightContainer.prefHeightProperty().bind( this.heightProperty().multiply( 0.8 ) );
         
@@ -204,7 +200,7 @@ public class WeatherResultsPane
                                     getSecondaryInfosCard( "Cloud Cover", weatherData.getCloudCover() + " %", "/icons/percentage.png" ),
                                     getSecondaryInfosCard( "Dew Point", weatherData.getDewPoint(), "/icons/dew.png" ),
                                     getSecondaryInfosCard( "Wind Gust", weatherData.getWindGust(), "/icons/wind-gust.png" ),
-                                    getSecondaryInfosCard( "Wind Direction", weatherData.getWindDirection(), "/icons/windy.png" ),
+                                    getSecondaryInfosCard( "Wind Direction", weatherData.getWindDirection(), "/icons/wind.png" ),
                                     getSecondaryInfosCard( null, weatherData.isDay() ? "Day" : "Night", "/icons/day-and-night.png" ) );
         
         tilePane.getChildren().addAll( cards );
@@ -239,14 +235,13 @@ public class WeatherResultsPane
         
         Image icon = new Image( getClass().getResource( iconPath ).toExternalForm() );
         ImageView iconView = new ImageView( icon );
-        iconView.setFitWidth ( 30 );
-        iconView.setFitHeight( 30 );
+        iconView.setFitWidth ( 40 );
+        iconView.setFitHeight( 40 );
         
         iconDiv.getChildren().add( iconView );
         
         VBox infoDiv = new VBox( 0 );
         infoDiv.setAlignment( Pos.CENTER_LEFT );
-        infoDiv.setStyle( "-fx-border-color: purple;" );
         
         Label infoLabel = new Label( label );
         infoLabel.setStyle( "-fx-text-fill: white;" );
