@@ -34,11 +34,11 @@ public class ProductService
         productRepository.deleteById( id );
     }
     
-    public Product update( Product product )
+    public Product update( Long id, Product product )
     {
-        if ( productRepository.existsById( product.getId() ) )
+        if ( productRepository.existsById( id ) )
         {
-            product.setId( product.getId() );
+            product.setId( id );
             
             return productRepository.save( product );
         }
