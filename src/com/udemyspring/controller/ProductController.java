@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,6 +32,12 @@ public class ProductController
     public Product save( @RequestBody Product product )
     {
         return productService.save( product );
+    }
+    
+    @PostMapping( "/saveList" )
+    public List<Product> saveAll( @RequestBody List<Product> products )
+    {
+        return productService.saveAll( products );
     }
     
     @PutMapping( "/{id}" )
