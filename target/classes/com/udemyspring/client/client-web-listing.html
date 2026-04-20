@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Products List</title>
+    </head>
+    <body>
+        <h2>Products List</h2>
+        <table id="productsTable" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+        <div id="errorMessage" style="color: red; display: none;">
+            An error has occured while trying to fetch the data. Please try again later.
+        </div>
+        <div id="totalProductsCount">
+            Total Products Amount: 0
+        </div>
+    
+        <script>
+            function listProducts()
+            {
+                fetch( "http://localhost:8080/products" )
+                .then( response =>
+                       {
+                           if ( !response.ok )
+                           {
+                               throw new Error( 'Network error: ' + response.status )
+                           }
+                       } )
+                .then( data =>
+                       {
+                           const tableBody = document.getElementById( 'productsTable' ).getElementsByTagName( 'tbody' )[ 0 ];
+                           let totalProductAmount = 0;
+                           
+                           data.forEach( product =>
+                            {
+                                const row = tableBody.insertRow();
+                                
+                                const cellId   = row.insertCell( 0 );
+                                const cellName = row.insertCell( 1 );
+                                
+                                cellId.textContent   = product.id;
+                                cellName.textContent = product.name;
+                                
+                                totalProductAmount++;
+                            } );
+                            
+                            document.getElementById( 'totalProductsCount' ).textContent = 'Total Products Amount: ' + totalProductAmount;
+                       } )
+                .catch( error => 
+                        {
+                           console.error( 'Error while trying to fetch the products: ', error );
+                           
+                           document.getElementById( 'errorMessage' ).style.display = 'block';
+                        } );
+            }
+            
+            document.addEventListener( 'DOMContentLoaded', listProducts );
+        </script>
+    </body>
+</html>
