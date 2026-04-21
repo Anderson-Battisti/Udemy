@@ -33,7 +33,7 @@ public class Product
         this.id = id;
     }
     
-    public String getProductName()
+    public String getName()
     {
         return productName;
     }

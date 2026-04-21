@@ -35,6 +35,8 @@
                            {
                                throw new Error( 'Network error: ' + response.status )
                            }
+                           
+                           return response.json();
                        } )
                 .then( data =>
                        {
@@ -49,7 +51,7 @@
                                 const cellName = row.insertCell( 1 );
                                 
                                 cellId.textContent   = product.id;
-                                cellName.textContent = product.name;
+                                cellName.textContent = product.productName;
                                 
                                 totalProductAmount++;
                             } );
