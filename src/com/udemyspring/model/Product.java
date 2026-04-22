@@ -1,10 +1,12 @@
 package com.udemyspring.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Product
@@ -16,11 +18,16 @@ public class Product
     @NotEmpty( message = "Product name must not be empty." )
     private String productName;
     
+    @NotNull
+    @Column( nullable = false, columnDefinition = "boolean default false" )
+    private boolean productAvailable;
+    
     public Product() {}
     
-    public Product( String productName )
+    public Product( String productName, boolean productAvailable )
     {
-        this.productName = productName;
+        this.productName      = productName;
+        this.productAvailable = productAvailable;
     }
     
     public long getId()
@@ -38,8 +45,8 @@ public class Product
         return productName;
     }
     
-    public void setProductName( String productName )
+    public boolean isProductAvailable()
     {
-        this.productName = productName;
+        return productAvailable;
     }
 }

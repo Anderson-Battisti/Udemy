@@ -8,8 +8,8 @@ public class CRUDMain
     {
         CRUDJavaClient javaClient = new CRUDJavaClient();
         
-        Product updatedProduct = new Product( "Monitor" );
-        Product product = new Product( "Tablet" );
+        Product updatedProduct = new Product( "Monitor", true );
+        Product product = new Product( "Tablet", true );
         
         javaClient.save( product );
         javaClient.updateProduct( 52, updatedProduct );
