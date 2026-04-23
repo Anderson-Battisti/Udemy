@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin( origins = "*" )
@@ -24,11 +25,53 @@ public class ProductController
     @Autowired
     private ProductService productService;
     
+    
+    /*- Find methods -*/
+    
     @GetMapping
-    public List<Product> getAllProducts()
+    public List<Product> findAll()
     {
         return productService.findAll();
     }
+    
+    @GetMapping( "/{id}" )
+    public Optional<Product> findById( @PathVariable Long id )
+    {
+        return productService.findById( id );
+    }
+    
+    @GetMapping( "/findByProductName" )
+    public List<Product> findByProductName( @RequestParam String productName )
+    {
+        return productService.findByProductName( productName );
+    }
+    
+    @GetMapping( "/findByProductNameContaining" )
+    public List<Product> findByProductNameContaining( @RequestParam String productName )
+    {
+        return productService.findByProductNameContaining( productName );
+    }
+    
+    @GetMapping( "/findByProductNameAndProductAvailable" )
+    public List<Product> findByProductNameAndProductAvailable( @RequestParam String productName, @RequestParam boolean productAvailable )
+    {
+        return productService.findByProductNameAndProductAvailable( productName, productAvailable );
+    }
+    
+    @GetMapping( "/findByProductNameStartingWith" )
+    public List<Product> findByProductNameStartingWith( @RequestParam String prefix )
+    {
+        return productService.findByProductNameStartingWith( prefix );
+    }
+    
+    @GetMapping( "/findByProductNameEndingWith" )
+    public List<Product> findByProductNameEndingWith( @RequestParam String suffix )
+    {
+        return productService.findByProductNameEndingWith( suffix );
+    }
+    
+    
+    /*- Save methods -*/
     
     @PostMapping
     public Product save( @RequestBody Product product )
@@ -42,21 +85,21 @@ public class ProductController
         return productService.saveAll( products );
     }
     
+    
+    /*- Update methods -*/
+    
     @PutMapping( "/{id}" )
     public Product update( @PathVariable Long id, @RequestBody Product product )
     {
         return productService.update( id, product );
     }
     
+    
+    /*- Delete methods -*/
+    
     @DeleteMapping( "/{id}" )
     public void deleteById( @PathVariable Long id )
     {
         productService.delete( id );
-    }
-    
-    @GetMapping( "/{id}" )
-    public Optional<Product> findById( @PathVariable Long id )
-    {
-        return productService.findById( id );
     }
 }

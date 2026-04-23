@@ -14,6 +14,8 @@ public class ProductService
     @Autowired
     private ProductRepository productRepository;
     
+    /*- Find methods -*/
+    
     public List<Product> findAll()
     {
         return productRepository.findAll();
@@ -23,6 +25,34 @@ public class ProductService
     {
         return productRepository.findById( id );
     }
+    
+    public List<Product> findByProductName( String productName )
+    {
+        return productRepository.findByProductName( productName );
+    }
+    
+    public List<Product> findByProductNameContaining( String productName )
+    {
+        return productRepository.findByProductNameContaining( productName );
+    }
+    
+    public List<Product> findByProductNameAndProductAvailable( String productName, boolean productAvailable )
+    {
+        return productRepository.findByProductNameAndProductAvailable( productName, productAvailable );
+    }
+    
+    public List<Product> findByProductNameStartingWith( String prefix )
+    {
+        return productRepository.findByProductNameStartingWith( prefix );
+    }
+    
+    public List<Product> findByProductNameEndingWith( String suffix )
+    {
+        return productRepository.findByProductNameEndingWith( suffix );
+    }
+    
+    
+    /*- Save methods -*/
     
     public Product save( Product product )
     {
@@ -34,10 +64,15 @@ public class ProductService
         return productRepository.saveAll( products );
     }
     
+    
+    /*- Delete methods -*/
+    
     public void delete( long id )
     {
         productRepository.deleteById( id );
     }
+    
+    /*- Update methods -*/
     
     public Product update( Long id, Product product )
     {
