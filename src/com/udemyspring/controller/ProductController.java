@@ -70,6 +70,30 @@ public class ProductController
         return productService.findByProductNameEndingWith( suffix );
     }
     
+    @GetMapping( "/findByPrice" )
+    public List<Product> findByPrice( @RequestParam double price )
+    {
+        return productService.findByPrice( price );
+    }
+    
+    @GetMapping( "/findByPriceGreaterThan" )
+    public List<Product> findByPriceGreaterThan( @RequestParam double price )
+    {
+        return productService.findByPriceGreaterThan( price );
+    }
+    
+    @GetMapping( "/findByPriceLessThan" )
+    public List<Product> findByPriceLessThan( @RequestParam double price )
+    {
+        return productService.findByPriceLessThan( price );
+    }
+    
+    @GetMapping( "/getPricesSum" )
+    public Double getPricesSum()
+    {
+        return  productService.getPricesSum();
+    }
+    
     
     /*- Save methods -*/
     

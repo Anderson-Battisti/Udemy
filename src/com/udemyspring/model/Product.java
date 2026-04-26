@@ -22,6 +22,10 @@ public class Product
     @Column( nullable = false, columnDefinition = "boolean default false" )
     private boolean productAvailable;
     
+    @NotNull
+    @Column( nullable = false )
+    private double price;
+    
     public Product() {}
     
     public Product( String productName, boolean productAvailable )

@@ -51,6 +51,26 @@ public class ProductService
         return productRepository.findByProductNameEndingWith( suffix );
     }
     
+    public List<Product> findByPrice( double price )
+    {
+        return productRepository.findByPrice( price );
+    }
+    
+    public List<Product> findByPriceGreaterThan( double price )
+    {
+        return productRepository.findByPriceGreaterThan( price );
+    }
+    
+    public List<Product> findByPriceLessThan( double price )
+    {
+        return productRepository.findByPriceLessThan( price );
+    }
+    
+    public Double getPricesSum()
+    {
+        return productRepository.getPricesSum();
+    }
+    
     
     /*- Save methods -*/
     
