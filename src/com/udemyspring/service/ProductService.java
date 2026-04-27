@@ -71,6 +71,11 @@ public class ProductService
         return productRepository.getPricesSum();
     }
     
+    public Long count()
+    {
+        return productRepository.count();
+    }
+    
     
     /*- Save methods -*/
     

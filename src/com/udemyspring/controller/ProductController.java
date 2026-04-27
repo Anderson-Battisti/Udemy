@@ -94,6 +94,12 @@ public class ProductController
         return  productService.getPricesSum();
     }
     
+    @GetMapping( "/getProductCount" )
+    public Long getProductCount()
+    {
+        return productService.count();
+    }
+    
     
     /*- Save methods -*/
     
